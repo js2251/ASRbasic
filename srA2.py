@@ -35,8 +35,8 @@ def trainNonCausalNN( filename_X = 'srA1_logp_combined_all.npy', filename_Y = 'P
     
     x = tf.keras.layers.AveragePooling1D( pool_size = 5, name = "pool_10ms")(inp)
     
-    x = tf.keras.layers.Bidirectional( tf.keras.layers.GRU( 128, return_sequences=True, trainable = False ), name = "gru1" )(x) # , kernel_regularizer=tf.keras.regularizers.l2(0.01)
-    x = tf.keras.layers.Bidirectional( tf.keras.layers.GRU( 128  ), name = "gru2", trainable = False )(x) # , recurrent_dropout=0.2
+    x = tf.keras.layers.Bidirectional( tf.keras.layers.GRU( 128, return_sequences=True, trainable = True ), name = "gru1" )(x) # , kernel_regularizer=tf.keras.regularizers.l2(0.01)
+    x = tf.keras.layers.Bidirectional( tf.keras.layers.GRU( 128  ), name = "gru2", trainable = True )(x) # , recurrent_dropout=0.2
     
     out1 = tf.keras.layers.Dense( 40, activation='softmax', name = "out_prev2"  )(x)
     out2 = tf.keras.layers.Dense( 40, activation='softmax', name = "out_now2"  )(x)
